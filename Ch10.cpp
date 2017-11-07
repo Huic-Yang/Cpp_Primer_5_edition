@@ -24,9 +24,12 @@ void _10_2_11_unique();
 bool is_shorter(const std::string &s1, const std::string &s2);
 void _10_3_1_sort_with_predicate();
 void _10_3_2_stable_sort();
+void _10_3_3_lambda_expression();
+void _10_3_4_find_if();
+void _10_3_5_for_each();
 
 int main() {
-  _10_3_2_stable_sort();
+  _10_3_5_for_each();
 }
 
 void _10_1_1_find_algorithm() {
@@ -174,6 +177,35 @@ void _10_3_2_stable_sort() {
   for (auto &e: words) std::cout << e << ' ';
   std::cout << std::endl;
 }
+
+void _10_3_3_lambda_expression() {
+  int sz = 5;
+  auto f = [sz](const std::string &str) { return str.size() >= sz; };
+}
+
+void _10_3_4_find_if() {
+  std::vector<std::string> words = {
+    "a", "ab", "abc", "abcd", "abcde", "abcdef", "abcdefg"
+  };
+  int sz = 5;
+  auto f = [sz](const std::string &s) { return s.size() >= sz; };
+  std::sort(words.begin(), words.end(), is_shorter);
+  std::vector<std::string>::iterator iter = std::find_if(words.begin(),
+                                                         words.end(),
+                                                         f);
+  decltype(words)::difference_type count = words.end() - iter;
+  std::cout << count << std::endl;
+}
+
+void _10_3_5_for_each() {
+  std::vector<std::string> words = {
+    "a", "ab", "abc", "abcd", "abcde", "abcdef", "abcdefg"
+  };
+  std::for_each(words.begin(), words.end(),
+                [](const std::string &s){ std::cout << s << ' '; });
+  std::cout << std::endl;
+}
+
 
 
 
