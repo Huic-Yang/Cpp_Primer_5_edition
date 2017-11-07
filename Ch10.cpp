@@ -18,9 +18,11 @@ void _10_2_6_back_inserter();
 void _10_2_7_copy();
 void _10_2_8_replace();
 void _10_2_9_repalce_copy();
+void _10_2_10_sort();
+void _10_2_11_unique();
 
 int main() {
-  _10_2_8_replace();
+  _10_2_11_unique();
 }
 
 void _10_1_1_find_algorithm() {
@@ -120,4 +122,25 @@ void _10_2_9_repalce_copy() {
   // use back_inserter to grow destination as needed
   replace_copy(ilst.cbegin(), ilst.cend(),
   back_inserter(ivec), 0, 42);
+}
+
+void _10_2_10_sort() {
+  std::vector<std::string> words = {"Hello", "World", "Cpp", "Primer"};
+  std::sort(words.begin(), words.end());
+  for (auto& elem: words) std::cout << elem << ' ';
+  std::cout << std::endl;
+}
+
+void _10_2_11_unique() {
+  std::vector<std::string> words = {"Hello", "World", "Cpp", "Primer",
+                                    "Hello", "World", "Python"};
+  std::sort(words.begin(), words.end());
+  // unique reorders the input range so that each word appears once in the front
+  // portion of the range and returns an iterator one past the unique range
+  std::vector<std::string>::iterator end_unique =
+    std::unique(words.begin(), words.end());
+  // erase uses a vector operation to remove the nonunique elements
+  words.erase(end_unique, words.end());
+  for (auto& elem: words) std::cout << elem << ' ';
+  std::cout << std::endl;
 }
