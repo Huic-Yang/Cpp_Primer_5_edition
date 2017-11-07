@@ -8,9 +8,13 @@ void _10_1_1_find_algorithm();
 void _10_1_2_find_in_any_container();
 void _10_1_3_find_in_built_in_arrays();
 void _10_1_4_find_in_subrange();
+// read algorithms
+void _10_2_1_sum_of_integer_sequence();
+void _10_2_2_sum_of_string();
+void _10_2_3_equal();
 
 int main() {
-  _10_1_4_find_in_subrange();
+  _10_2_3_equal();
 }
 
 void _10_1_1_find_algorithm() {
@@ -42,4 +46,24 @@ void _10_1_4_find_in_subrange() {
   int val = 83;
   // search the elements starting from ia[1] up to but not including ia[4]
   auto result = find(ia + 1, ia + 4, val);
+}
+
+void _10_2_1_sum_of_integer_sequence() {
+  // sum the elements in vec starting the summation with the value 0
+  vector<int> vec = {27, 210, 12, 47, 109, 83};
+  int sum = accumulate(vec.cbegin(), vec.cend(), 0);
+  cout << "sum is " << sum << endl;
+}
+
+void _10_2_2_sum_of_string() {
+  vector<string> v = {"Hello", " World", " Cpp"};
+  string str = accumulate(v.cbegin(), v.cend(), string("")); // can't convert std::string to std::const char*
+  cout << str << endl;
+}
+
+void _10_2_3_equal() {
+  vector<string> vec = {"Hello", "World", "Cpp"};
+  list<const char*> lst = {"Hello", "World", "Cpp"};
+  bool same = equal(vec.cbegin(), vec.cend(), lst.cbegin());
+  cout << (same? "same" : "not same") << endl;
 }
