@@ -20,9 +20,13 @@ void _10_2_8_replace();
 void _10_2_9_repalce_copy();
 void _10_2_10_sort();
 void _10_2_11_unique();
+// customizing operation
+bool is_shorter(const std::string &s1, const std::string &s2);
+void _10_3_1_sort_with_predicate();
+void _10_3_2_stable_sort();
 
 int main() {
-  _10_2_11_unique();
+  _10_3_2_stable_sort();
 }
 
 void _10_1_1_find_algorithm() {
@@ -144,3 +148,34 @@ void _10_2_11_unique() {
   for (auto& elem: words) std::cout << elem << ' ';
   std::cout << std::endl;
 }
+
+bool is_shorter(const std::string &s1, const std::string &s2) {
+  return s1.size() < s2.size();
+}
+
+void _10_3_1_sort_with_predicate() {
+  std::vector<std::string> words = {"One", "Two", "Three",
+                                    "four", "five", "six"};
+  std::sort(words.begin(), words.end(), is_shorter);
+  for (auto &elem: words) std::cout << elem << ' ';
+  std::cout << std::endl;
+}
+
+void _10_3_2_stable_sort() {
+  std::vector<std::string> words = {"Hello", "World", "Cpp", "Primer",
+                                    "Hello", "World", "Python", "one",
+                                    "two", "three", "four"};
+  std::sort(words.begin(), words.end());
+  std::vector<std::string>::iterator
+    end_unique = std::unique(words.begin(), words.end());
+  words.erase(end_unique, words.end());
+
+  std::stable_sort(words.begin(), words.end(), is_shorter);
+  for (auto &e: words) std::cout << e << ' ';
+  std::cout << std::endl;
+}
+
+
+
+
+
