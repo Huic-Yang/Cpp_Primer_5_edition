@@ -41,9 +41,10 @@ void _10_3_16_bind_rearrange_parameters();
 void _10_3_17_bind_reference();
 void _10_4_1_istream_iterator();
 void _10_4_2_ostream_iterator();
+void _10_4_3_reverse_iterator();
 
 int main() {
-  _10_4_2_ostream_iterator();
+  _10_4_3_reverse_iterator();
 }
 
 void _10_1_1_find_algorithm() {
@@ -337,6 +338,13 @@ void _10_4_2_ostream_iterator() {
     * out_iter++ = e;
   // the assignment writes this element to cout
   std::cout << std::endl;
+}
+
+void _10_4_3_reverse_iterator() {
+  std::string line = "Hello, my name is Huichen Yang";
+  std::string::reverse_iterator r_white_space = std::find(line.crbegin(),
+                                                          line.crend(), " ");
+  std::cout << std::string(r_white_space.base(), line.cend()) << std::endl;
 }
 
 
