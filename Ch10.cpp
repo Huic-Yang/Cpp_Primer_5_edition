@@ -35,10 +35,13 @@ void _10_3_10_lambda_mix_implicit_captures(std::ostream &os = std::cout);
 void _10_3_11_lambda_mutable();
 void _10_3_12_transform();
 void _10_3_13_lambda_specify_return_type();
-void _10_3_14_bind();
+bool _10_3_14_check_size(const std::string &s, std::string::size_type sz);
+void _10_3_15_bind();
+void _10_3_16_bind_rearrange_parameters();
+void _10_3_17_bind_reference();
 
 int main() {
-  _10_3_13_lambda_specify_return_type();
+  _10_3_17_bind_reference();
 }
 
 void _10_1_1_find_algorithm() {
@@ -228,7 +231,7 @@ void _10_3_7_lambda_capture_by_reference() {
   // the object f2 contains a reference to v1
   auto f2 = [&v1] { return v1; };
   v1 = 0;
-  auto j = f2(); // j is 0 ; f2 refers to v1 ; it doesn¡¯t store it
+  auto j = f2(); // j is 0 ; f2 refers to v1 ; it doesnÂ¡Â¯t store it
 }
 
 void _10_3_8_lambda_capture_iostream(std::ostream &os) {
@@ -282,5 +285,41 @@ void _10_3_13_lambda_specify_return_type() {
   for (auto &e: vec) std::cout << e << ' ';
   std::cout << std::endl;
 }
+
+bool _10_3_14_check_size(const std::string &s, std::string::size_type sz) {
+  return s.size() >= sz;
+}
+
+void _10_3_15_bind() {
+  // check6 is a callable object that takes one argument of type string
+  // and calls check_size on its given string and the value 6
+  auto check6 = std::bind(_10_3_14_check_size, std::placeholders::_1, 6);
+  if (!check6("Hello")) std::cout << "Hello has 5 characters" << std::endl;
+  if (check6("Primer")) std::cout << "Primer has 6 characters" << std::endl;
+}
+
+void _10_3_16_bind_rearrange_parameters() {
+  auto f = [](char a, char b, char c, char d, char e) {
+    std::cout << a << ' ' << b << ' ' << c << ' ' << d << ' ' << e << std::endl;
+  };
+  auto g = std::bind(f, 'a', 'b', std::placeholders::_2,
+                     'd', std::placeholders::_1);
+  g('e', 'c');
+}
+
+void _10_3_17_bind_reference() {
+  std::vector<std::string> words = {
+    "a", "ab", "abc", "abcd", "abcde", "abcdef", "abcdefg"
+  };
+  auto print = [](std::ostream &os, const std::string &s, char c) {
+    os << s << c;
+  };
+  std::for_each(words.begin(), words.end(),
+                std::bind(print, ref(std::cout), std::placeholders::_1, ' '));
+}
+
+
+
+
 
 
