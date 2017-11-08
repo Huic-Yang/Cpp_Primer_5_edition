@@ -27,9 +27,18 @@ void _10_3_2_stable_sort();
 void _10_3_3_lambda_expression();
 void _10_3_4_find_if();
 void _10_3_5_for_each();
+void _10_3_6_lambda_capture_by_value();
+void _10_3_7_lambda_capture_by_reference();
+void _10_3_8_lambda_capture_iostream(std::ostream &os = std::cout);
+void _10_3_9_lambda_implicit_captures();
+void _10_3_10_lambda_mix_implicit_captures(std::ostream &os = std::cout);
+void _10_3_11_lambda_mutable();
+void _10_3_12_transform();
+void _10_3_13_lambda_specify_return_type();
+void _10_3_14_bind();
 
 int main() {
-  _10_3_5_for_each();
+  _10_3_13_lambda_specify_return_type();
 }
 
 void _10_1_1_find_algorithm() {
@@ -206,8 +215,72 @@ void _10_3_5_for_each() {
   std::cout << std::endl;
 }
 
+void _10_3_6_lambda_capture_by_value() {
+  size_t v1 = 42; // local variable
+  // copies v1 into the callable object named f
+  auto f = [v1] { return v1; };
+  v1 = 0;
+  auto j = f(); // j is 42 ; f stored a copy of v1 when we created it
+}
 
+void _10_3_7_lambda_capture_by_reference() {
+  size_t v1 = 42; // local variable
+  // the object f2 contains a reference to v1
+  auto f2 = [&v1] { return v1; };
+  v1 = 0;
+  auto j = f2(); // j is 0 ; f2 refers to v1 ; it doesn¡¯t store it
+}
 
+void _10_3_8_lambda_capture_iostream(std::ostream &os) {
+  std::vector<std::string> words = {
+    "a", "ab", "abc", "abcd", "abcde", "abcdef", "abcdefg"
+  };
+  auto print = [&os](const std::string &s){ os << s << ' '; };
+  std::for_each(words.begin(), words.end(), print);
+}
 
+void _10_3_9_lambda_implicit_captures() {
+  std::vector<std::string> words = {
+    "a", "ab", "abc", "abcd", "abcde", "abcdef", "abcdefg"
+  };
+  int sz = 5;
+  auto wc = find_if(words.begin(), words.end(),
+                    [=](const std::string &s){ return s.size() >= sz; });
+}
+
+void _10_3_10_lambda_mix_implicit_captures(std::ostream &os) {
+  std::vector<std::string> words = {
+    "a", "ab", "abc", "abcd", "abcde", "abcdef", "abcdefg"
+  };
+  int sz = 5;
+  auto print = [=, &os](const std::string &s) {
+    if (s.size() >= sz) os << s << ' ';
+  };
+  std::for_each(words.begin(), words.end(), print);
+}
+
+void _10_3_11_lambda_mutable() {
+  size_t v1 = 42;
+  // f can change the value of the variables it captures
+  auto f = [v1] () mutable { return ++v1; };
+  v1 = 0;
+  auto j = f(); // j is 43
+}
+
+void _10_3_12_transform() {
+  std::vector<int> vec = {1, -1, 2, -2, 3, -3};
+  std::transform(vec.begin(), vec.end(), vec.begin(),
+                 [](int i) { return i > 0? i : -i; });
+  for (auto &e: vec) std::cout << e << ' ';
+  std::cout << std::endl;
+}
+
+void _10_3_13_lambda_specify_return_type() {
+  std::vector<int> vec = {1, -1, 2, -2, 3, -3};
+  std::transform(vec.begin(), vec.end(), vec.begin(),
+                 [](int i) -> int { if (i > 0) return i; else return -i; });
+  for (auto &e: vec) std::cout << e << ' ';
+  std::cout << std::endl;
+}
 
 
