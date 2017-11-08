@@ -39,9 +39,11 @@ bool _10_3_14_check_size(const std::string &s, std::string::size_type sz);
 void _10_3_15_bind();
 void _10_3_16_bind_rearrange_parameters();
 void _10_3_17_bind_reference();
+void _10_4_1_istream_iterator();
+void _10_4_2_ostream_iterator();
 
 int main() {
-  _10_3_17_bind_reference();
+  _10_4_2_ostream_iterator();
 }
 
 void _10_1_1_find_algorithm() {
@@ -316,6 +318,25 @@ void _10_3_17_bind_reference() {
   };
   std::for_each(words.begin(), words.end(),
                 std::bind(print, ref(std::cout), std::placeholders::_1, ' '));
+}
+
+void _10_4_1_istream_iterator() {
+  std::vector<int> vec;
+  std::istream_iterator<int> in_iter(std::cin); // read ints from cin
+  std::istream_iterator<int> eof; // istream ‘‘end’’ iterator
+  while (in_iter != eof) // while there’s valid input to read
+  // postfix increment reads the stream and returns the old value of the iterator
+  // we dereference that iterator to get the previous value read from the stream
+    vec.push_back( * in_iter++);
+}
+
+void _10_4_2_ostream_iterator() {
+  std::vector<int> vec = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+  std::ostream_iterator<int> out_iter(std::cout, " ");
+  for (auto e : vec)
+    * out_iter++ = e;
+  // the assignment writes this element to cout
+  std::cout << std::endl;
 }
 
 
