@@ -84,3 +84,26 @@ copy(c.begin(), c.end(), back_inserter(v));
 
 ## Exercise 11.19
 Pass.
+
+## Exercise 11.20
+```cpp
+map<string, size_t> words;
+for (string word; cin >> word; ) {
+  pair<map<string, size_t>::iterator, bool> res = words.insert(make_pair(word, 1));
+  if (!res.second)
+    ++res.first->second;
+}
+for (const auto &w: words)
+  cout << w.first << ' ' << w.second << endl;
+```
+
+## Exercise 11.22
+If the word is contained in the keys, insertion will not be excuted and the corresponding value will be increased. If the word is not contained in it,
+insertion will be excuted and the value is zero. after the `++` operation, the
+value will be 1.
+
+## Exercise 11.22
+`std::pair<std::string, std::vector<int> >`
+`std::pair<std::map<std::string, std::vector<int> >::iterator, bool>`
+
+## [Exercise 11.23](ex_11_23.cpp)
