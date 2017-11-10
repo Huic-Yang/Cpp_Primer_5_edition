@@ -13,3 +13,15 @@
 ## [Exercise 11.3](ex_11_3.cpp)
 
 ## [Exercise 11.4](ex_11_4.cpp)
+
+## Exercise 11.5
+`std::set`s contains only the key while `std::map`s contain key associated with
+ value.
+
+`std::set`s were used mostly in those tasks save elements once.
+
+`std::map`s were used mostly in those tasks associate one thing to another
+ thing.
+
+##
+[Exercise 11.6](https://stackoverflow.com/questions/2302681/c-stl-list-vs-set)
