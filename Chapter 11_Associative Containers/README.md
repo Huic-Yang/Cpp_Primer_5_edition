@@ -18,9 +18,9 @@
 `std::set`s contains only the key while `std::map`s contain key associated with
  value.
 
-`std::set`s were used mostly in those tasks save elements once.
+`std::set`s were used mostly in those tasks saving elements once.
 
-`std::map`s were used mostly in those tasks associate one thing to another
+`std::map`s were used mostly in those tasks associating one thing to another
  thing.
 
 ## [Exercise 11.6](https://stackoverflow.com/questions/2302681/c-stl-list-vs-set)
@@ -39,3 +39,13 @@ map. `std::vector<T>::iterator` can do that because it has `<` operation.
 
 ## Exercise 11.11
 Pass.
+
+## [Exercise 11.12](ex_11_12.cpp)
+
+## [Exercise 11.13]
+`std::pair<FirstType, SecondType> p(first, second);`
+`std::pair<FirstType, SecondType> p = make_pair(first, second);`
+`std::pair<FirstType, SecondType> p = {first, second};`
+`return {first, second}`
+
+## [Exercise 11.14](ex_11_14.cpp)
