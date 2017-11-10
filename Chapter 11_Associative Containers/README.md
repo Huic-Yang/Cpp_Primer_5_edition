@@ -23,5 +23,4 @@
 `std::map`s were used mostly in those tasks associate one thing to another
  thing.
 
-## [Exercise 11.6]
-(https://stackoverflow.com/questions/2302681/c-stl-list-vs-set)
+## [Exercise 11.6](https://stackoverflow.com/questions/2302681/c-stl-list-vs-set)
