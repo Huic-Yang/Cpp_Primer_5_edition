@@ -49,3 +49,38 @@ Pass.
 `return {first, second}`
 
 ## [Exercise 11.14](ex_11_14.cpp)
+
+## Exercise 11.15
+> What are the mapped_type, key_type, and value_type of a map
+from int to vector<int>?
+
+`mapped_type`: vector<int>
+
+`key_type`: int
+
+`value_type`: map<const int, vector<int> >
+
+## Exercise 11.16
+>Using a map iterator write an expression that assigns a value to an
+element.
+
+```Cpp
+map<string, int> numbers = {{"one", 1}, {"two", 2}, {"three", 3}};
+for (auto it = numbers.begin(); it != numbers.end(); ++it)
+  it->second = 0;
+```
+
+## [Exercise 11.17](ex_11_17.cpp)
+>Assuming c is a multiset of strings and v is a vector of
+strings, explain the following calls. Indicate whether each call is legal:
+
+```Cpp
+copy(v.begin(), v.end(), inserter(c, c.end()));
+copy(v.begin(), v.end(), back_inserter(c)); // set has no member `push_back`
+copy(c.begin(), c.end(), inserter(v, v.end()));
+copy(c.begin(), c.end(), back_inserter(v));
+```
+## [Exercise 11.18](ex_11_18.cpp)
+
+## Exercise 11.19
+Pass.
