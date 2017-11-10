@@ -30,3 +30,12 @@
 [The same file](ex_11_7.cpp)
 
 ## [Exercise 11.8](ex_11_8.cpp)
+
+## [Exercise 11.9](ex_11_9.cpp)
+
+## [Exercise 11.10](ex_11_10.cpp)
+Because `std::list<T>::iterator` has no operation `<`, it can't be the key of a
+map. `std::vector<T>::iterator` can do that because it has `<` operation.
+
+## Exercise 11.11
+Pass.
