@@ -5,14 +5,14 @@
 #include <map>
 
 template<typename SequentialContainer>
-void print_sequence(SequentialContainer &c) {
+void print_sequence(const SequentialContainer &c) {
   for (auto it = c.cbegin(); it != c.cend(); ++it)
     std::cout << *it << ' ';
   std::cout << std::endl;
 }
 
 template<typename map>
-void print_map(map &mp) {
+void print_map(const map &mp) {
   for (auto &w: mp)
     std::cout << w.first << ' ' << w.second << std::endl;
 }

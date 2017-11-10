@@ -24,3 +24,9 @@
  thing.
 
 ## [Exercise 11.6](https://stackoverflow.com/questions/2302681/c-stl-list-vs-set)
+
+## [Exercise 11.7](https://github.com/Mooophy/Cpp-Primer/blob/master/ch11/ex11_7.cpp)
+
+[The same file](ex_11_7.cpp)
+
+## [Exercise 11.8](ex_11_8.cpp)
