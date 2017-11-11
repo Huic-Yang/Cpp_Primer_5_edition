@@ -128,6 +128,7 @@ value is value initialized which is zero too.
 It will be error because v is empth and we can't access element with the subscript-0.
 
 ## Exercise 11.26
+<<<<<<< HEAD
 subscipt: the key type.
 
 return: `std::map<K, V>::maped_type`
