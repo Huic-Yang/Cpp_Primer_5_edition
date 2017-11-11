@@ -8,7 +8,7 @@
 void count() {
   std::map<std::string, size_t> mp;
   for (std::string w; std::cin >> w; ++mp[w]) {}
-  print_map(mp);
+  std::cout << mp << std::endl;
 }
 
 int main() {
