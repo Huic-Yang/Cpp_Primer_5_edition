@@ -107,3 +107,32 @@ value will be 1.
 `std::pair<std::map<std::string, std::vector<int> >::iterator, bool>`
 
 ## [Exercise 11.23](ex_11_23.cpp)
+
+## Exercise 11.24
+>What does the following program do?
+```cpp  
+  map<int, int> m;
+  m[0] = 1;
+```
+>* m is searched for the element whose key is zeor, and the element is not found.
+>* A new key-value pair is inserted into m. The key is a const int -- 0, and the
+value is value initialized which is zero too.
+>* The new inserted element is fetched and is given the value 1.
+
+## Exercise 11.25
+>Contrast the following program with the one in the previous exercise
+```cpp
+  vector<int> v;
+  v[0] = 1;
+```
+It will be error because v is empth and we can't access element with the subscript-0.
+
+## Exercise 11.26
+subscipt: the key type. \\
+return: `std::map<K, V>::maped_type` \\
+example:
+```cpp
+  std::map<std::string, size_t> words;
+  std::string str; std::cin >> str; // subscipt type: std::string;
+  words[str] = 1; // return type: size_t
+```
