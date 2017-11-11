@@ -138,3 +138,28 @@ example:
   std::string str; std::cin >> str; // subscipt type: std::string;
   words[str] = 1; // return type: size_t
 ```
+## Exercise 11.27
+>What kinds of problems would you use count to solve? When might
+you use find instead?
+
+`count`: used in those problems need to know how many elements in the map. This operation is mostly used in multi-container.
+
+`find`: used in those problems need to access the element without the amount of this element. This operation is mostly used in unique-container.
+
+## [Exercise 11.28](ex_11_28.cpp)
+
+## Exercise 11.29
+>What do upper_bound, lower_bound, and equal_range return
+when you pass them a key that is not in the container?
+
+key can be inserted
+while preserving the element order within the container.
+
+## Exercise 11.30
+`pos`: a pair of iterator donates the range of pairs whose key is equal to the search_item.
+
+`pos.first`: the iterator donates the pair with the matching key.
+
+`pos.first->second`: the second element of the pair which is corresponded to the matching key.
+
+## [Exercise 11.31](ex_11_31.cpp)
