@@ -163,3 +163,32 @@ while preserving the element order within the container.
 `pos.first->second`: the second element of the pair which is corresponded to the matching key.
 
 ## [Exercise 11.31](ex_11_31.cpp)
+
+## [Exercise 11.32](ex_11_32.cpp)
+
+## [Exercise 11.33](ex_11_33.cpp)
+> Implement your own version of the word-transformation program.
+## [Exercise 11.34](ex_11_34.cpp)
+> What would happen if we used the subscriptoperator instead of find
+in the transform function?
+
+It would insert the subscript as a new key and use the value initialization to make the new value when the subscript is not in the map.
+
+## Exercise 11.35
+>  In buildMap, what effect, if any, would there be from rewriting
+```cpp
+  trans_map[key] = value.substr(1);
+```
+as
+```cpp
+  trans_map.insert({key, value.substr(1)})
+```
+When the key is already in the map, `subscript operation` will modify the corresponding value while `insert` will be ignore.
+
+## Exercise 11.36
+```cpp
+if (value.size() > 1)
+  trans_map[key] = value.substr(1);
+```
+After expression being excuted, an empty string will be added into the map.
+When the key appears in the file, it will be replaced by an empty string.
