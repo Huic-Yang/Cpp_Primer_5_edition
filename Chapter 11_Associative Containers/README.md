@@ -192,3 +192,13 @@ if (value.size() > 1)
 ```
 After expression being excuted, an empty string will be added into the map.
 When the key appears in the file, it will be replaced by an empty string.
+
+## Exercise 11.37
+>Whatarethe advantages ofanunorderedcontainer as comparedtothe
+ordered version of that container? What are the advantages of the ordered version?
+
+Pass.
+
+## [Exercise 11.38](ex_11_38.cpp)
+> Rewrite the word-counting (§ 11.1, p. 421) and word-transformation
+(§ 11.3.6, p. 440) programs to use an unordered_map.
