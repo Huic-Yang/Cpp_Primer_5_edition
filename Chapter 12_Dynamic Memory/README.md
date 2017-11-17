@@ -177,3 +177,22 @@ typedef unique_ptr<int> IntP;
 
 Because one object can be held by more than one shared_ptr while only one
 unique_ptr. It is not necessary to provide the member.
+
+## [Exercise 12.19](str_blob.h)
+> Define your own version of StrBlobPtr and update your StrBlob
+class with the appropriate friend declaration and begin and end members.
+
+## [Exercise 12.20](ex_12_21.cpp)
+
+## Exercise 12.21
+>  We could have written StrBlobPtr’s deref member as follows:
+
+```cpp
+std::string& deref() const
+{ return ( * check(curr, "dereference past end"))[curr]; }
+```
+>Which version do you think is better and why?
+
+The previous one is more readable so it is better.
+
+## [Exercise 12.22](ex_12_22.CPP)
