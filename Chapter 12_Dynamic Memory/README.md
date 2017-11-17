@@ -139,3 +139,41 @@ delete p;
 When we call `sp.get()`, we get a built-in pointer pointing to the same memory
 to which sp points. After this scope, the smart_ptr sp will free the memory
 having already been freed after `delete p` called and this is undefined.
+
+## Exercise 12.14
+> Write your own versionof a function that uses a shared_ptrto man-
+age a connection.
+
+Pass.
+
+## Exercise 12.15
+> Rewrite the first exercise to use a lambda (§ 10.3.2, p. 388) in place of
+the end_connection function.
+
+Pass.
+
+## [Exercise 12.16](ex_12_16.cpp)
+> Compilers don’t always give easy-to-understand error messages if we
+attempt to copy or assign a unique_ptr. Write a program that contains these errors
+to see how your compiler diagnoses them.
+
+## [Exercise 12.17](ex_12_17.cpp)
+> Which of the following unique_ptr declarations are illegal or likely
+to result in subsequent program error? Explain what the problem is with each one.
+
+```cpp
+int ix = 1024, *pi = &ix, *pi2 = new int(2048);
+typedef unique_ptr<int> IntP;
+
+(a) IntP p0(ix);
+(b) IntP p1(pi);
+(c) IntP p2(pi2);
+(d) IntP p3(&ix);
+(e) IntP p4(new int(2048));
+(f) IntP p5(p2.get());
+```
+## Exercise 12.18
+> Why doesn’t shared_ptr have a release member?
+
+Because one object can be held by more than one shared_ptr while only one
+unique_ptr. It is not necessary to provide the member.

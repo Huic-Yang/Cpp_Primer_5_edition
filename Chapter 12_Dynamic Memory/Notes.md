@@ -122,6 +122,35 @@ the object that it manages.
 >* They don’t know the precise type of the objects they need
 >* They want to share data between several objects
 
+## unique_ptr
+```cpp
+unique_ptr<T> u1     // Null unique_ptrs that can point to objects of type T. u1
+unique_ptr<T, D> u2  // will use delete to free its pointer; u2 will use a
+                     // callable object of type D to free its pointer.
+
+ unique_ptr<T, D> u(d) // Null unique_ptr that point to objects of type T that
+                       // uses d, which must be an object of type D in place of delete.
+
+u = nullptr           // Deletes the object to which u points; makes u null.
+
+u.release()           // Relinquishes control of the pointer u had held; returns the
+                      // pointer u had held and makes u null.
+
+u.reset()             // Deletes the object to which u points; If the built-in
+u.reset(q)            // pointer q is supplied,makes u point to that object.
+u.reset(nullptr)      // Otherwise makes u null.
+```
+
+## Some conventions for Using Smart Pointers
+>* Don’t use the same built-in pointer value to initialize (or reset) more than one
+smart pointer.
+>* Don’t delete the pointer returned from get().
+>* Don’t use get() to initialize or reset another smart pointer.
+>* If you use a pointer returned by get(), remember that the pointer will become
+invalid when the last corresponding smart pointer goes away.
+>* If you use a smart pointer to manage a resource other than memory allocated by
+new, remember to pass a deleter (§ 12.1.4, p. 468, and § 12.1.5, p. 471).
+
 ## Dangerous Examples
 ```cpp
 // ptr is created and initialized when process is called
