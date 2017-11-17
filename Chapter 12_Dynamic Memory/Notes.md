@@ -76,7 +76,27 @@ p.unique()           // Returns true if p.use_count() is one; false otherwise.
 
 p.use_count()        // Returns the number of objects sharing with p; may be a
                      // slow operation, intended primarily for debugging
-                     // purposes.             
+                     // purposes.        
+
+shared_ptr<T> p(q)   // p manages the object to which the built-in pointer q
+                     // points; q must point to memory allocated by new and must
+                     // be convertible to T * .
+
+shared_ptr<T> p(u)   // p assumes ownership from the unique_ptr u; makes u null.
+
+shared_ptr<T> p(q, d) // p assumes ownership for the object to which the
+                      // built-in pointer q points. q must be convertible to
+                      // T * (§ 4.11.2, p. 161). p will use the callable object
+                      // d (§ 10.3.2, p. 388) in place of delete to free q.
+
+shared_ptr<T> p(p2, d) // p is a copy of the shared_ptr p2 as described in
+                       // Table 12.2 except that p uses the callable object d
+                       // in place of delete.
+p.reset()              // If p is the only shared_ptr pointing at its object,
+p.reset(q)             // reset frees p’s existing object. If the optional
+p.reset(q, d)          // built-in pointer q is passed, makes p point to q,
+                       // otherwise makes p null. If d is supplied,  will call
+                       // d to free q otherwise uses delete to free q.                  
 ```
 
 ### Copyint and Assigning shared_ptr
@@ -101,3 +121,26 @@ the object that it manages.
 >* They don’t know how many objects they’ll need
 >* They don’t know the precise type of the objects they need
 >* They want to share data between several objects
+
+## Dangerous Examples
+```cpp
+// ptr is created and initialized when process is called
+void process(shared_ptr<int> ptr) {
+  // use ptr
+} // ptr goes out of scope and is destroyed
+
+int *x(new int(1024)); // dangerous: x is a plain pointer, not a smart pointer
+process(x); // error: cannot convert int * to shared_ptr<int>
+process(shared_ptr<int>(x)); // legal, but the memory will be deleted!
+int j = *x; // undefined: x is a dangling pointer!
+```
+
+Don't bind the same built-in pointer to more than one smart pointer. You
+shouldn't free the built-in pointer when you want to bind it to a smart pointer.
+The function `get()` has the familiar danger.
+```cpp
+int *p = new int(4);
+// the reference count of the object to which p3 and p4 point is 1
+std::shared_ptr<int> p3 = std::shared_ptr<int>(p);
+std::shared_ptr<int> p4 = std::shared_ptr<int>(p);
+```

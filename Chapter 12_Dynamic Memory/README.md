@@ -65,7 +65,7 @@ It will return true because p is not a nullptr.
 int *q = new int(42), *r = new int(100);
 r = q;
 ```
-The object to which `r` pointed to previously is not freed.
+The object to which `r` pointed previously is not freed.
 
 ```cpp
 auto q2 = make_shared<int>(42), r2 = make_shared<int>(100);
@@ -73,3 +73,69 @@ r2 = q2;
 ```
 The reference count of object to which `r2` pointed reduce to 0 and the memory
 is freed safely.
+
+## Exercise 12.10
+>Explain whether the following call to the [process](Notes.md) function defined
+on page 464 is correct. If not, how would you correct the call?
+
+correct.
+```cpp
+shared_ptr<int> p(new int(42)); // reference count: 1
+process(shared_ptr<int>(p)); // in the process function reference count is 2
+                             // after the function reference count is 1
+                             // which means the object is not freed in this function.
+```
+
+## Exercise 12.11
+>What would happen if we called process as follows?
+
+```cpp
+process(shared_ptr<int>(p.get()));
+```
+`p.get()`: return a built-in pointer to the object to which p points.
+
+`shared_ptr<int>(p.get())`: return a shared_ptr of the object which has its own
+reference count(1);
+
+`process(...)`: after this function, the object is freed, and p becomes a
+dangling pointer. It is dangerous to use p.
+
+After this scope exits, the smart_ptr p will free the memory having already
+been freed in the process, so it is dangerous.
+
+## Exercise 12.12
+>Using the declarations of p and sp explain each of the following calls
+to process. If the call is legal, explain what it does. If the call is illegal, explain why:
+
+```cpp
+auto p = new int();
+auto sp = make_shared<int>();
+(a) process(sp);
+(b) process(new int());
+(c) process(p);
+(d) process(shared_ptr<int>(p));
+```
+`(a)`: legal. When sp is passed to process as a parameter, it is copied and its
+reference count is incremented. It wounld not be freed in the process function.
+So it can work.
+
+`(b)`: illeagl. Because a plain pointer can not convert to a smart_ptr
+automatically. A error will be raised.
+
+`(c)`: illeagal. This one is the same as above.
+
+`(d)`: It can work but it may be dangerous if we free p outside the process
+function. The memory to which p points is freed in the process. We shouldn't
+free it again outside the process.
+
+## Exercise 12.13
+>What happens if we execute the following code?
+
+```cpp
+auto sp = make_shared<int>();
+auto p = sp.get();
+delete p;
+```
+When we call `sp.get()`, we get a built-in pointer pointing to the same memory
+to which sp points. After this scope, the smart_ptr sp will free the memory
+having already been freed after `delete p` called and this is undefined.
