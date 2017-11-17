@@ -13,7 +13,7 @@ b2.push_back("about");
 
 `b2` was destroyed
 
-## [Exercise 12.2](StrBlob.h)
+## [Exercise 12.2](str_blob.h)
 > Write your own version of the StrBlob class including the const ver-
 sions of front and back.
 

@@ -141,6 +141,26 @@ u.reset(q)            // pointer q is supplied,makes u point to that object.
 u.reset(nullptr)      // Otherwise makes u null.
 ```
 
+## weak_ptr
+```cpp
+weak_ptr<T> w        // Null weak_ptr that can point at objects of type T.
+
+weak_ptr<T> w(sp)    // weak_ptr that points to the same object as the shared_ptr sp.
+                     // T must be convertible to the type to which sp points.
+
+w = p                // p can be a shared_ptr or a weak_ptr. After the assignment w
+                     // shares ownership with p.
+
+w.reset()            // Makes w null.
+
+w.use_count()        // The number of shared_ptrs that share ownership with w.
+
+w.expired()          // Returns true if w.use_count() is zero, false otherwise.
+
+w.lock()             // If expired is true, returns a null shared_ptr; otherwise returns
+                     // a shared_ptr to the object to which w points.
+```
+
 ## Some conventions for Using Smart Pointers
 >* Don’t use the same built-in pointer value to initialize (or reset) more than one
 smart pointer.

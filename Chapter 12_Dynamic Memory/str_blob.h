@@ -6,7 +6,7 @@
 #include <memory>
 #include <stdexcept>
 
-class StrBlob {
+struct StrBlob {
 public:
   typedef std::vector<std::string>::size_type size_type;
   StrBlob();
@@ -21,7 +21,7 @@ public:
   std::string& back();
   const std::string& front() const;
   const std::string& back() const;
-private:
+
   std::shared_ptr<std::vector<std::string>> data;
   // throws msg if data[i] isn’t valid
   void check(size_type i, const std::string &msg) const;
