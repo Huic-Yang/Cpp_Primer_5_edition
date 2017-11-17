@@ -36,3 +36,40 @@ explicit (§ 7.5.4, p. 296). Discuss the pros and cons of this design choice.
 
 In some cases, we can write the code easier by using the automatic conversion
 but sometimes it would make some unexpected troubles.
+
+## [Exercise 12.6](ex_12_6.cpp)
+>Write a function that returns a dynamically allocated vector of ints.
+Pass that vector to another function that reads the standard input to give values to
+the elements. Pass the vector to another function to print the values that were read.
+Remember to delete the vector at the appropriate time.
+
+## [Exercise 12.7](ex_12.7.cpp)
+> Redo the previous exercise, this time using shared_ptr.
+
+## [Exercise 12.8](ex_12_8.cpp)
+> Explain what if anything is wrong with the following function.
+
+```cpp
+bool b() {
+  int * p = new int;
+  // . . .
+  return p;
+}
+```
+It will return true because p is not a nullptr.
+
+## [Exercise 12.9](ex_12_9.cpp)
+>Explain what happens in the following code:
+
+```cpp
+int *q = new int(42), *r = new int(100);
+r = q;
+```
+The object to which `r` pointed to previously is not freed.
+
+```cpp
+auto q2 = make_shared<int>(42), r2 = make_shared<int>(100);
+r2 = q2;
+```
+The reference count of object to which `r2` pointed reduce to 0 and the memory
+is freed safely.

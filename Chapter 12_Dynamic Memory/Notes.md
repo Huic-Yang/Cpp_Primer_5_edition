@@ -10,10 +10,13 @@ entered and exited.
 `heap`: for objects that they dynamically allocate.
 
 ## Problem for Free Memory
-`memory leak`: forget to free the memory.
+`memory leak`: forget to free the memory. The memory is never returned to the
+free store.
 
 `point to the freed memory`: free the memory when there are still memory
 pointers referring to that memory (no longer valid).
+
+`Use an object that it has been deleted`
 
 ## Smart Pointers
  `shared_ptr`: allows multiple pointers to refer to the same object.
