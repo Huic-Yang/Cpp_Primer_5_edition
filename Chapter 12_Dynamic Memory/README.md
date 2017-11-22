@@ -196,3 +196,25 @@ std::string& deref() const
 The previous one is more readable so it is better.
 
 ## [Exercise 12.22](ex_12_22.CPP)
+> Write a program to concatenate two string literals, putting the result
+in a dynamically allocated array of char. Write a program to concatenate two library
+strings that have the same value as the literals used in the first program.
+
+## [Exercise 12.23](ex_12_23.cpp)
+> Write a program that reads a string from the standard input into a
+dynamically allocated character array. Describe how your program handles varying
+size inputs. Test your program by giving it a string of data that is longer than the array size you’ve allocated.
+
+## [Exercise 12.24](ex_12_24.cpp)
+>  Given the following new expression, how would you delete pa?
+
+```CPP
+int *pa = new int[10];
+```
+
+```CPP
+delete [] pa;
+```
+
+## [Exercise 12.26](ex_12_26.cpp)
+> Rewrite the program on page 481 using an allocator.
