@@ -218,3 +218,16 @@ delete [] pa;
 
 ## [Exercise 12.26](ex_12_26.cpp)
 > Rewrite the program on page 481 using an allocator.
+
+## [Exercise 12.27](ex_12_27.cpp)
+>  The TextQuery and QueryResult classes use only capabilities that
+we have already covered. Without looking ahead, write your own versions of these
+classes.
+
+## [Exercise 12.28](ex_12_28.cpp)
+> Write a program to implement text queries without defining classes to
+manage the data. Your program should take a file and interact with a user to query for words in that file. Use vector, map, and set containers to hold the data for the file and to generate the results for the queries.
+
+## [Exercise 12.29](ex_12_29.coo)
+>  We could have written the loop to manage the interaction with the
+user as a do while (§ 5.4.4, p. 189) loop. Rewrite the loop to use a do while. Explain which version you prefer and why.
